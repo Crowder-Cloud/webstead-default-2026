@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {# Staff-only tools can be removed safely if you do not want them. #}
+  {% if user.is_authenticated and user.is_staff %}
+  <div class="staff-controls">
+    <form method="post" action="{% url 'delete_post' slug=post.slug %}">
+      {% csrf_token %}
+      <button type="submit" class="button-secondary">Delete</button>
+    </form>
+  </div>
+  {% endif %}
+
+  {# Post kind switcher: note, photo, or article. #}
+  {% if post.kind == 'note' %}
+    {% include 'blog/note.html' %}
+  {% elif post.kind == 'photo' %}
+    {% include 'blog/photo.html' %}
+  {% else %}
+    {% include 'blog/article.html' %}
+  {% endif %}
+{% endblock %}

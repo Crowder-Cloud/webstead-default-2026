@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="post-filter">
+    <form action="{% url 'posts' %}" method="get">
+      <span>Filter posts by kind:</span>
+      {% for kind_value, kind_label in post_kinds %}
+      <label>
+        <input
+          type="checkbox"
+          name="kind"
+          value="{{ kind_value }}"
+          {% if kind_value in selected_kinds %}checked{% endif %}
+          onchange="this.form.submit()"
+        />
+        {{ kind_label }}
+      </label>
+      {% endfor %}
+    </form>
+  </section>
+
+  <section class="h-feed">
+    {% for post in posts %}
+      {% if post.kind == 'note' %}
+        {% include 'blog/note.html' %}
+      {% elif post.kind == 'photo' %}
+        {% include 'blog/photo.html' %}
+      {% else %}
+        {% include 'blog/article-summary.html' %}
+      {% endif %}
+    {% endfor %}
+  </section>
+
+  <nav class="paginator" aria-label="Pagination">
+    {% if posts.has_previous %}
+    <a class="pagination-item" href="?{{ selected_kinds_query }}{% if selected_kinds_query %}&{% endif %}page={{ posts.previous_page_number }}">Newer</a>
+    {% endif %}
+    <span class="pagination-item pagination-status">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+    {% if posts.has_next %}
+    <a class="pagination-item" href="?{{ selected_kinds_query }}{% if selected_kinds_query %}&{% endif %}page={{ posts.next_page_number }}">Older</a>
+    {% endif %}
+  </nav>
+{% endblock %}
+
+{% block footer_extra %}
+  <span aria-hidden="true">·</span>
+  <a href="{% url 'posts_feed' %}{% if feed_kinds_query %}?{{ feed_kinds_query }}{% endif %}">RSS feed</a>
+  {{ block.super }}
+{% endblock %}
