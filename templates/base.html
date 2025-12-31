@@ -59,14 +59,6 @@
         <a href="{% static 'pubkey.txt' %}" rel="me pgpkey">{% author_hcard_name %}</a>
       </div>
 
-      {% block footer_extra %}
-      {% if user.is_authenticated and user.is_staff %}
-      <span class="footer-admin">
-        <a href="{% url 'post_editor' %}">Post editor</a>
-      </span>
-      {% endif %}
-      {% endblock %}
-
       {% if footer_menu_items %}
       <nav class="footer-nav" aria-label="Footer navigation">
         {% for item in footer_menu_items %}
@@ -74,6 +66,9 @@
         {% endfor %}
       </nav>
       {% endif %}
+
+      {% block footer_extra %}
+      {% endblock %}
     </footer>
 
     <script src="{% static 'themes/webstead-default-2026/js/theme.js' %}"></script>
