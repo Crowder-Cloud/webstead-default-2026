@@ -16,7 +16,7 @@
       {% else %}
       <img
         class="u-photo"
-        src="{% static 'themes/webstead-default-2026/img/default-avatar.svg' %}"
+        src="{% theme_static 'img/default-avatar.svg' %}"
         alt="{{ site_author_display_name|default:settings.title|default:'Site author' }} avatar"
         height="120"
         width="120"

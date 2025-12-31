@@ -7,8 +7,8 @@
     <title>{{ settings.title }}{% block title %}{% endblock %}</title>
 
     {# Theme assets live at themes/<slug>/... #}
-    <link rel="stylesheet" href="{% static 'themes/webstead-default-2026/css/theme.css' %}" />
-    <link rel="stylesheet" href="{% static 'themes/webstead-default-2026/css/print.css' %}" media="print" />
+    <link rel="stylesheet" href="{% theme_static 'css/theme.css' %}" />
+    <link rel="stylesheet" href="{% theme_static 'css/print.css' %}" media="print" />
 
     {# RSS feed (only present on pages where feed_url is provided) #}
     {% if feed_url %}
@@ -71,7 +71,7 @@
       {% endblock %}
     </footer>
 
-    <script src="{% static 'themes/webstead-default-2026/js/theme.js' %}"></script>
+    <script src="{% theme_static 'js/theme.js' %}"></script>
     <script src="{% static 'js/site_admin_bar.js' %}"></script>
   </body>
 </html>

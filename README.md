@@ -12,18 +12,18 @@ This theme is **just** a theme. It contains templates, static assets, and docume
 
 ## Quick start
 
-1) Install the theme from git.
+1. Install the theme from git.
 
 - In the admin UI: Settings > Themes > Install from git.
 - URL: your fork (example: `https://github.com/you/webstead-default-2026`)
 - Slug: `webstead-default-2026`
 
-2) Or place it on disk manually.
+2. Or place it on disk manually.
 
 - Copy this repo to your `THEMES_ROOT` directory.
 - The final path should look like: `THEMES_ROOT/webstead-default-2026/theme.json`
 
-3) Activate it.
+3. Activate it.
 
 - In the admin UI: Settings > Themes > Active theme.
 
@@ -88,7 +88,7 @@ The theme static files are served under `themes/<slug>/...`.
 Example usage in templates:
 
 ```
-<link rel="stylesheet" href="{% static 'themes/webstead-default-2026/css/theme.css' %}">
+<link rel="stylesheet" href="{% theme_static 'css/theme.css' %}">
 ```
 
 ## Notes for forkers
